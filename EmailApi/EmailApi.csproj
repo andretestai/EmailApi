@@ -22,9 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmailApi.Data\EmailApi.Data.csproj" />
-    <ProjectReference Include="..\EmailApi.Domain\EmailApi.Domain.csproj" />
-    <ProjectReference Include="..\EmailApi.Services\EmailApi.Services.csproj" />
   </ItemGroup>
 
 </Project>
