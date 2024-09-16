@@ -28,9 +28,9 @@ namespace EmailApi.Services
             return await _emailRepository.GetEmail(dados);
         }
 
-        public async Task<List<EmailModel>> GetEmails(EmailModel dados)
+        public async Task<List<EmailModel>> GetEmails()
         {
-            return await _emailRepository.GetEmails(dados);
+            return await _emailRepository.GetEmails();
         }
 
         public async Task<TemaModel> GetTema(EmailModel dados)

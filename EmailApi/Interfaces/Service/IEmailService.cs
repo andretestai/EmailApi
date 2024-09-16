@@ -11,7 +11,7 @@ namespace EmailApi.Interfaces.Service
     {
         Task<bool> SendEmail(EmailModel dados);
         Task<EmailModel> GetEmail(EmailModel dados);
-        Task<List<EmailModel>> GetEmails(EmailModel dados);
+        Task<List<EmailModel>> GetEmails();
         Task<bool> UpdateEmail(EmailModel dados);
         Task<bool> DeleteEmail(EmailModel dados);
         Task<bool> VerifySpam(EmailModel dados);

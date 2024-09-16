@@ -48,12 +48,12 @@ namespace EmailApi.Data.Repository
             }
         }
 
-        public async Task<List<EmailModel>> GetEmails(EmailModel dados)
+        public async Task<List<EmailModel>> GetEmails()
         {
 
             try
             {
-                return await _context.Email.Where(at => at.EmailDestinatario == dados.EmailDestinatario).ToListAsync();
+                return await _context.Email.ToListAsync();
             }
             catch (Exception ex)
             {

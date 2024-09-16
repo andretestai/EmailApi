@@ -35,14 +35,10 @@ namespace EmailApi.Controllers
         }
 
         [HttpGet("GetEmails")]
-        public async Task<List<EmailModel>> GetEmails(string? emailDestinario)
+        public async Task<List<EmailModel>> GetEmails()
         {
-            var email = new EmailModel()
-            {
-                EmailDestinatario = emailDestinario
-            };
 
-            return await _emailService.GetEmails(email);
+            return await _emailService.GetEmails();
         }
 
         [HttpPut("UpdateEmail")]
