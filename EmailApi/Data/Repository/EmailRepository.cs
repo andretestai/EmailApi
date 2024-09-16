@@ -132,23 +132,30 @@ namespace EmailApi.Data.Repository
             }
         }
 
-        public async Task<bool> GetTema(EmailModel dados)
+        public async Task<TemaModel> GetTema(EmailModel dados)
         {
             try
             {
-                var tema = await _context.Email
-                 .Where(e => e.EmailDestinatario == dados.EmailDestinatario)
-                 .OrderByDescending(at => at.Id) 
-                 .FirstOrDefaultAsync();
-                if(tema == null)
+                var email = await _context.Email
+                    .Where(e => e.EmailDestinatario == dados.EmailDestinatario)
+                    .OrderByDescending(e => e.Id)
+                    .Select(e => new
+                    {
+                        e.Tema 
+                    })
+                    .FirstOrDefaultAsync();
+
+                if (email == null || email.Tema == null)
                 {
-                    return false; 
+                    return null; 
                 }
-                return true;
+
+                var tema = email.Tema;
+                return tema;
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao pegar tema" + ex);
+                throw new Exception("Erro ao pegar tema", ex); 
             }
         }
     }

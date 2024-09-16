@@ -79,11 +79,12 @@ namespace EmailApi.Controllers
         }
 
         [HttpGet("GetTema")]
-        public async Task<bool> GetTema (string? emailDestinatario)
+        public async Task<TemaModel> GetTema (string? emailDestinatario, int? idTema)
         {
             var email = new EmailModel()
             {
-                EmailDestinatario = emailDestinatario
+                EmailDestinatario = emailDestinatario,
+                IdTema = idTema
             };
 
             return await _emailService.GetTema(email);

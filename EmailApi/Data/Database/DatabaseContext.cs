@@ -25,7 +25,15 @@ namespace EmailApi.Data.Database
                 entity.Property(e => e.Remetente).HasMaxLength(100);
                 entity.Property(e => e.DataEnvio).HasColumnName("Data_Envio").HasColumnType("TIMESTAMP");
                 entity.Property(e => e.Favorito);
-                entity.Property(e => e.Tema);
+                entity.HasOne(e => e.Tema).WithMany().HasForeignKey(e => e.IdTema);
+            });
+
+            modelBuilder.Entity<TemaModel>(entity => 
+            { 
+                entity.ToTable($"TB_Tema");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e =>e.Id).HasMaxLength(1);
             });
 
             base.OnModelCreating(modelBuilder);

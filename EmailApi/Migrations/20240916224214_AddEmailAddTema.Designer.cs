@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace EmailApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240913225958_AddEmail")]
-    partial class AddEmail
+    [Migration("20240916224214_AddEmailAddTema")]
+    partial class AddEmailAddTema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,18 +27,18 @@ namespace EmailApi.Migrations
 
             modelBuilder.Entity("EmailApi.Model.EmailModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("NUMBER(10)");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Assunto")
                         .HasMaxLength(255)
                         .HasColumnType("NVARCHAR2(255)");
 
-                    b.Property<DateTime>("DataEnvio")
-                        .HasColumnType("TIMESTAMP(7)")
+                    b.Property<DateTime?>("DataEnvio")
+                        .HasColumnType("TIMESTAMP")
                         .HasColumnName("Data_Envio");
 
                     b.Property<string>("EmailDestinatario")
@@ -51,8 +51,11 @@ namespace EmailApi.Migrations
                         .HasColumnType("NVARCHAR2(2000)")
                         .HasColumnName("Email_Rementente");
 
-                    b.Property<bool>("Favorito")
-                        .HasColumnType("BOOLEAN");
+                    b.Property<int?>("Favorito")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<int?>("IdTema")
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("Mensagem")
                         .HasColumnType("NVARCHAR2(2000)");
@@ -61,12 +64,37 @@ namespace EmailApi.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR2(100)");
 
-                    b.Property<bool>("Tema")
-                        .HasColumnType("BOOLEAN");
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdTema");
+
+                    b.ToTable("TB_Email", (string)null);
+                });
+
+            modelBuilder.Entity("EmailApi.Model.TemaModel", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(1)
+                        .HasColumnType("NUMBER(10)");
+
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<int?>("Tema")
+                        .HasColumnType("NUMBER(10)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TB_Email", (string)null);
+                    b.ToTable("TB_Tema", (string)null);
+                });
+
+            modelBuilder.Entity("EmailApi.Model.EmailModel", b =>
+                {
+                    b.HasOne("EmailApi.Model.TemaModel", "Tema")
+                        .WithMany()
+                        .HasForeignKey("IdTema");
+
+                    b.Navigation("Tema");
                 });
 #pragma warning restore 612, 618
         }

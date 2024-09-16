@@ -33,7 +33,7 @@ namespace EmailApi.Services
             return await _emailRepository.GetEmails(dados);
         }
 
-        public async Task<bool> GetTema(EmailModel dados)
+        public async Task<TemaModel> GetTema(EmailModel dados)
         {
             return await _emailRepository.GetTema(dados);
         }
