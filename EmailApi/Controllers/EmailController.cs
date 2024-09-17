@@ -75,15 +75,14 @@ namespace EmailApi.Controllers
         }
 
         [HttpGet("GetTema")]
-        public async Task<TemaModel> GetTema (string? emailDestinatario, int? idTema)
+        public async Task<TemaModel> GetTema (int? idTema)
         {
-            var email = new EmailModel()
+            var tema = new TemaModel()
             {
-                EmailDestinatario = emailDestinatario,
-                IdTema = idTema
+                Id = idTema
             };
 
-            return await _emailService.GetTema(email);
+            return await _emailService.GetTema(tema);
         }
     }
 }

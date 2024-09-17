@@ -18,7 +18,5 @@ namespace EmailApi.Model
         public string? Remetente { get; set; }
         public DateTime? DataEnvio { get; set; }
         public int? Favorito { get; set; }
-        public int? IdTema { get; set; }
-        public TemaModel? Tema { get; set; }
     }
 }

@@ -6,6 +6,8 @@ namespace EmailApi.Data.Database
     public class DatabaseContext : DbContext
     {
         public DbSet<EmailModel> Email { get; set; }
+        public DbSet<TemaModel> Tema { get; set; }
+
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -25,7 +27,6 @@ namespace EmailApi.Data.Database
                 entity.Property(e => e.Remetente).HasMaxLength(100);
                 entity.Property(e => e.DataEnvio).HasColumnName("Data_Envio").HasColumnType("TIMESTAMP");
                 entity.Property(e => e.Favorito);
-                entity.HasOne(e => e.Tema).WithMany().HasForeignKey(e => e.IdTema);
             });
 
             modelBuilder.Entity<TemaModel>(entity => 

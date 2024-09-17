@@ -10,7 +10,7 @@ namespace EmailApi.Interfaces.Repository
         Task<bool> UpdateEmail(EmailModel dados);
         Task<bool> DeleteEmail(EmailModel dados);
         Task<bool> VerifySpam(EmailModel dados);
-        Task<TemaModel> GetTema(EmailModel dados);
+        Task<TemaModel> GetTema(TemaModel dados);
 
     }
 }

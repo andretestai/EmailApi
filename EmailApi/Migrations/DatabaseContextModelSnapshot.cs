@@ -51,9 +51,6 @@ namespace EmailApi.Migrations
                     b.Property<int?>("Favorito")
                         .HasColumnType("NUMBER(10)");
 
-                    b.Property<int?>("IdTema")
-                        .HasColumnType("NUMBER(10)");
-
                     b.Property<string>("Mensagem")
                         .HasColumnType("NVARCHAR2(2000)");
 
@@ -62,8 +59,6 @@ namespace EmailApi.Migrations
                         .HasColumnType("NVARCHAR2(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdTema");
 
                     b.ToTable("TB_Email", (string)null);
                 });
@@ -83,15 +78,6 @@ namespace EmailApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TB_Tema", (string)null);
-                });
-
-            modelBuilder.Entity("EmailApi.Model.EmailModel", b =>
-                {
-                    b.HasOne("EmailApi.Model.TemaModel", "Tema")
-                        .WithMany()
-                        .HasForeignKey("IdTema");
-
-                    b.Navigation("Tema");
                 });
 #pragma warning restore 612, 618
         }
