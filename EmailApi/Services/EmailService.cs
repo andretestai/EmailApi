@@ -1,4 +1,5 @@
-﻿using EmailApi.Interfaces.Repository;
+﻿using EmailApi.Data.Repository;
+using EmailApi.Interfaces.Repository;
 using EmailApi.Interfaces.Service;
 using EmailApi.Model;
 using System;
@@ -46,6 +47,11 @@ namespace EmailApi.Services
         public async Task<bool> UpdateEmail(EmailModel dados)
         {
             return await _emailRepository.UpdateEmail(dados);
+        }
+
+        public async Task<TemaModel> UpdateTema(TemaModel dados)
+        {
+            return await _emailRepository.UpdateTema(dados);
         }
 
         public async Task<bool> VerifySpam(EmailModel dados)

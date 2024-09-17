@@ -16,6 +16,8 @@ namespace EmailApi.Interfaces.Service
         Task<bool> DeleteEmail(EmailModel dados);
         Task<bool> VerifySpam(EmailModel dados);
         Task<TemaModel> GetTema(TemaModel dados);
+        Task<TemaModel> UpdateTema(TemaModel dados);
+
 
 
     }

@@ -12,5 +12,8 @@ namespace EmailApi.Interfaces.Repository
         Task<bool> VerifySpam(EmailModel dados);
         Task<TemaModel> GetTema(TemaModel dados);
 
+        Task<TemaModel> UpdateTema(TemaModel dados);
+
+
     }
 }

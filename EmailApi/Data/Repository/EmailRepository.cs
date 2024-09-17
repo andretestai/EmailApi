@@ -65,7 +65,7 @@ namespace EmailApi.Data.Repository
         {
             try
             {
-                var verificar = await VerifySpam(dados);
+                var verificar = false /*await VerifySpam(dados)*/;
 
                 if (!verificar)
                 {
@@ -88,6 +88,7 @@ namespace EmailApi.Data.Repository
 
                 if (emailExistente != null)
                 {
+                    emailExistente.Id = dados.Id;
                     emailExistente.Assunto = dados.Assunto;
                     emailExistente.Mensagem = dados.Mensagem;
                     emailExistente.EmailRemetente = dados.EmailRemetente;
@@ -151,6 +152,31 @@ namespace EmailApi.Data.Repository
             catch (Exception ex)
             {
                 throw new Exception("Erro ao pegar tema", ex); 
+            }
+        }
+
+        public async Task<TemaModel> UpdateTema(TemaModel dados)
+        {
+            try
+            {
+                var emailExistente = await _context.Tema.Where(at => at.Id == dados.Id).FirstOrDefaultAsync();
+
+                if (emailExistente != null)
+                {
+                    emailExistente.Id = dados.Id;
+                    emailExistente.Tema = dados.Tema;
+
+                    _context.Tema.Update(emailExistente);
+                    await _context.SaveChangesAsync();
+
+                    return emailExistente;
+                }
+
+                return emailExistente!;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao editar email" + ex);
             }
         }
     }

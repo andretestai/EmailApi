@@ -84,5 +84,16 @@ namespace EmailApi.Controllers
 
             return await _emailService.GetTema(tema);
         }
+
+        [HttpPut("UpdateTema")]
+        public async Task<TemaModel> UpdateTema(int idTema)
+        {
+            var tema = new TemaModel()
+            {
+                Id = idTema
+            };
+            return await _emailService.UpdateTema(tema);
+
+        }
     }
 }
